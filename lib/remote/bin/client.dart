@@ -25,7 +25,7 @@ class MyClient {
         options: ChannelOptions(
           credentials: const ChannelCredentials.insecure(),
           codecRegistry:
-          CodecRegistry(codecs: const [GzipCodec(), IdentityCodec()]),
+              CodecRegistry(codecs: const [GzipCodec(), IdentityCodec()]),
           connectionTimeout: const Duration(seconds: 60),
         ),
       );
@@ -43,8 +43,7 @@ class MyClient {
         id: Random().nextInt(10000),
         title: title,
         description: description,
-        isCompleted: false
-    );
+        isCompleted: false);
 
     return _stud.addTodo(note);
   }
@@ -55,9 +54,11 @@ class MyClient {
     final todos = await _stud.getTodos(Empty());
     print("\nonGetNotes:\n");
 
+    print("Json: ${todos.writeToJson()}\n");
+
     for (var todo in todos.todos) {
-      print('{id: ${todo.id},title: ${todo.title},description: ${todo
-          .description},isCompleted: ${todo.isCompleted}}\n');
+      print(
+          '{id: ${todo.id},title: ${todo.title},description: ${todo.description},isCompleted: ${todo.isCompleted}}\n');
     }
 
     return todos.todos;
